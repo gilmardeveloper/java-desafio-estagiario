@@ -1,0 +1,143 @@
+<!-- 
+	
+	 Tela com ações para o processo de CRUD básico para administrar informações de funcionários.
+  	 
+  	 principais componentes: 
+  	 	- form
+  	 	- datatable
+  	 	- confirmdialog
+  	 
+  	 classe modelo:
+  	 	- Funcionario	
+  	 	
+  	 bean controler:
+  	 	- FuncionarioBean
+  	 
+  	 contexto:
+  	 	- /funcionario/CadastroFuncionario
+
+-->
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Funcionários</ui:define>
+
+	<ui:define name="corpo">
+		
+		<!-- form (formulário com a ação de salvar dados de um funcionário) -->
+		<h:form id="formFuncionario">
+			<h1>Funcionários</h1>
+			
+			<!-- mensagens -->
+			<p:growl autoUpdate="true" closable="true" />
+			
+			<!-- toolbar (com botões [salvar] e [limpar formulário]) -->
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Salvar" action="#{funcionarioBean.salvar}" update="@form :funcionariosTable" />
+				</p:toolbarGroup>
+				<p:toolbarGroup>
+					<p:commandButton value="Limpar formulário" action="#{funcionarioBean.novo}" update="@form" />
+				</p:toolbarGroup>
+			</p:toolbar>
+			
+			<!-- panelgrid (com inputs) -->
+			<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+				
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" value="#{funcionarioBean.funcionario.nome}" size="60" required="true" />
+
+				<p:outputLabel value="Matrícula" for="matricula" />
+				<p:inputText id="matricula" size="10" value="#{funcionarioBean.funcionario.matricula}" required="true" />
+
+				<p:outputLabel value="Cargo" for="cargo" />
+				<p:selectOneMenu id="cargo"	value="#{funcionarioBean.funcionario.cargo}" converter="cargoConverter" required="true">
+					<f:selectItem itemLabel="Selecione um cargo" />
+					<f:selectItems value="#{cargoBean.cargos}" var="cargo" itemValue="#{cargo}" itemLabel="#{cargo.descricao}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Salário" for="salario" />
+				<p:inputText id="salario" size="10" maxlength="10"
+					styleClass="moeda" value="#{funcionarioBean.funcionario.salario}" required="true">
+					<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+				</p:inputText>
+				
+			</p:panelGrid>
+		</h:form>
+		
+		<!-- form (tabela de funcionários com ações de pesquisar, alterar e remover) -->
+		<h:form id="funcionariosTable">
+			<p:dataTable style="margin-top: 20px"
+						 emptyMessage="Nenhum funcionário encontrado." rows="10"
+						 value="#{funcionarioBean.funcionarios}" var="funcionario" 
+						 paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom"
+						 widgetVar="funcionarioTable" filteredValue="#{funcionarioBean.funcionariosFiltrados}">
+				
+				<!-- filtro global -->
+				<f:facet name="header">
+					<p:outputPanel>
+						<div align="right">
+							<p:inputText id="globalFilter"
+								onkeyup="PF('funcionarioTable').filter()" style="width:150px;"
+								placeholder="Buscar" />
+						</div>
+					</p:outputPanel>
+				</f:facet>
+				
+				<!-- colunas (outputtexts) -->
+				<p:column style="text-align: center;"
+						  headerText="Nome" sortBy="#{funcionario.nome}"
+				  		  filterBy="#{funcionario.nome}" filterStyle="display:none;">
+					<h:outputText value="#{funcionario.nome}" />
+				</p:column>
+
+				<p:column style="text-align: center;"
+						  headerText="Matrícula" sortBy="#{funcionario.matricula}"
+				 		  filterBy="#{funcionario.matricula}" filterStyle="display:none;">
+					<h:outputText value="#{funcionario.matricula}" />
+				</p:column>
+
+				<p:column style="text-align: center;"
+						  headerText="Cargo" sortBy="#{funcionario.cargo.descricao}"
+				  		  filterBy="#{funcionario.cargo.descricao}" filterStyle="display:none;">
+					<h:outputText value="#{funcionario.cargo.descricao}"/>
+				</p:column>
+
+				<p:column style="text-align: center;"
+						  headerText="Salário" sortBy="#{funcionario.salario}"
+				  		  filterBy="#{funcionario.salario}" filterStyle="display:none;">
+					<h:outputText value="#{funcionario.salario}">
+						<f:convertNumber type="currency" />
+					</h:outputText>
+				</p:column>
+				
+				<!-- coluna (commandbutton) --> 
+				<p:column style="width: 100px; text-align: center">
+
+					<p:commandButton actionListener="#{funcionarioBean.alterar(funcionario)}"
+									 update=":formFuncionario @form" icon="ui-icon-pencil" title="Editar" />
+
+					<p:commandButton actionListener="#{funcionarioBean.remover(funcionario)}"
+									 update="@form :formFuncionario" icon="ui-icon-trash" title="Excluir">
+						<p:confirm header="Alerta" icon="ui-icon-alert" 
+								   message="Tem certeza que deseja excluir o funcionário #{funcionario.nome}?"/>
+					</p:commandButton>
+					
+					<!-- confirmdialog -->
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Sim" type="button"
+										 styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Não" type="button"
+										 styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+
+				</p:column>
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,120 @@
+<!-- 
+	
+	 Tela com ações para o processo de CRUD básico para administrar informações de cargos.
+  	 
+  	 principais componentes: 
+  	 	- form
+  	 	- datatable
+  	 	- confirmdialog
+  	 
+  	 classe modelo:
+  	 	- Cargo	
+  	 	
+  	 bean controler:
+  	 	- CargoBean
+  	 
+  	 contexto:
+  	 	- /cargo/CadastroCargo
+
+-->
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Cargos</ui:define>
+
+	<ui:define name="corpo">
+		
+		<!-- form (formulário com a ação de salvar dados de um cargo) -->
+		<h:form id="formCargo">
+			<h1>Cargos</h1>
+			
+			<!-- mensagens -->
+			<p:growl autoUpdate="true" closable="true" />
+
+			<!-- toolbar (com botões [salvar] e [limpar formulário]) -->
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Salvar" action="#{cargoBean.salvar}" update="@form :cargosTable" />
+				</p:toolbarGroup>
+				<p:toolbarGroup>
+					<p:commandButton value="Limpar formulário" action="#{cargoBean.novo}" update="@form :cargosTable" />
+				</p:toolbarGroup>
+			</p:toolbar>
+			
+			<!-- panelgrid (com inputs) -->
+			<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+				
+				<p:outputLabel value="Código" for="codigoCargo" />
+				<p:inputText id="codigoCargo" size="10" value="#{cargoBean.cargo.codigo}" required="true" />
+
+				<p:outputLabel value="Descrição" for="descricao" />
+				<p:inputText id="descricao" value="#{cargoBean.cargo.descricao}" size="60" required="true" />
+
+			</p:panelGrid>
+		</h:form>
+		
+		<!-- form (tabela de cargos com ações de pesquisar, alterar e remover) -->
+		<h:form id="cargosTable">
+
+			<p:dataTable style="margin-top: 20px" 
+						 emptyMessage="Nenhum cargo encontrado." rows="10"
+						 value="#{cargoBean.cargos}" var="cargo"
+	  	   				 paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom"
+						 widgetVar="cargoTable" filteredValue="#{cargoBean.cargosFiltrados}">
+
+				<!-- filtro global -->
+				<f:facet name="header">
+					<p:outputPanel>
+						<div align="right">
+							<p:inputText id="globalFilter"
+								onkeyup="PF('cargoTable').filter()" style="width:150px;"
+								placeholder="Buscar" />
+						</div>
+					</p:outputPanel>
+				</f:facet>
+
+				<!-- colunas (outputtexts) -->
+				<p:column style="text-align: center; width: 100px" 
+						  headerText="Código" sortBy="#{cargo.codigo}"
+						  filterBy="#{cargo.codigo}" filterStyle="display:none">
+					<h:outputText value="#{cargo.codigo}" />
+				</p:column>
+
+				<p:column headerText="Descrição" 
+					      sortBy="#{cargo.descricao}" filterBy="#{cargo.descricao}"
+					      filterMatchMode="startsWith" filterStyle="display:none">
+					<h:outputText value="#{cargo.descricao}" />
+				</p:column>
+				
+				<!-- coluna (commandbutton) -->
+				<p:column style="width: 100px; text-align: center">
+				
+					<p:commandButton actionListener="#{cargoBean.alterar(cargo)}"
+									 update=":formCargo" icon="ui-icon-pencil" title="Editar" />
+
+					<p:commandButton actionListener="#{cargoBean.remover(cargo)}"
+									 update="@form" icon="ui-icon-trash" title="Excluir">
+						<p:confirm header="Alerta"
+									message="Tem certeza que deseja excluir o cargo #{cargo.descricao}? 
+									Essa operação vai deletar todos os funcionários cadastrados nesse cargo."
+									icon="ui-icon-alert" />
+					</p:commandButton>
+	
+					<!-- confirmdialog -->
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Sim" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Não" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
+
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,84 @@
+<!-- 
+	
+	 Template padrão para telas do sistema, contém um menu básico para acesso as telas
+	 da aplicação.
+	 
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Contety-Type" content="text/html" charset="UTF-8"></meta>
+	<title><ui:insert name="titulo">Sistema de Gestão de Funcionários</ui:insert></title>
+
+	<h:outputStylesheet library="css" name="sistema.css" />
+	<h:outputScript library="js" name="jquery.maskMoney.js" />
+</h:head>
+
+<h:body>
+
+	<p:ajaxStatus styleClass="ajax-status" onsuccess="configurarMoeda()">
+		
+		<f:facet name="start">
+			<h:graphicImage library="images" name="loading.gif" />
+		</f:facet>
+		
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+
+	</p:ajaxStatus>
+	
+	<header>
+		
+		<div style="float: left">
+			<h:link outcome="/Home">
+				<h:graphicImage library="images" name="logo.png" style="height:35px" />
+			</h:link>
+		</div>
+
+
+		<div style="float: right; margin-right: 110px">
+
+			<h:form style="display: inline-block">
+				<p:menubar styleClass="menu-sistema">
+					<p:submenu label="Cadastros">
+						<p:menuitem value="Cargos" outcome="/cargo/CadastroCargo" />
+						<p:menuitem value="Funcionários" outcome="/funcionario/CadastroFuncionario" />
+						<p:separator />
+						<p:menuitem value="Aplicação de Promoção" outcome="/promocao/AplicacaoPromocao" />
+					</p:submenu>
+				</p:menubar>
+			</h:form>
+			
+		</div>
+		<div style="cleat: both"></div>
+	</header>
+
+	<div id="conteudo">
+		<ui:insert name="corpo" />
+	</div>
+
+	<p:separator style="margin-top: 20px" />
+
+	<footer>Sistema Comercial Java EE com CDI, JPA e Primefaces </footer>
+
+	<script>
+		function configurarMoeda() {
+			$(".moeda").maskMoney({
+				decimal : ",",
+				thousands : ".",
+				allowZero : true
+			});
+		}
+
+		$(document).ready(function() {
+			configurarMoeda();
+		});
+	</script>
+</h:body>
+</html>
