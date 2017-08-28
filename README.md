@@ -28,18 +28,6 @@ o maven faz o download das dependências.
 Run on Server. Importânte que neste momento seu Eclipse já tenha um servidor Tomcat configurado, caso não tenha, um novo servidor deve ser
 adicionado e configurado para que esse passo da execução seja realizado.
 
-## Executando o projeto com NetBeans
-
-* Faça o clone do projeto para sua pasta NetBeansProjects ou outra de sua escolha, após o download, vá no menu Arquivo do Netbeans, 
-clique em Abrir Projeto, na tela de dialogo, selecione a pasta que você clonou, e clique em Abrir Projeto.
-
-* Aguarde o maven configurar o projeto, uma barra de progresso no canto inferior do NetBeans ficará visível enquanto
-o maven faz o download das dependências. Caso a barra não apareça e um icone amarelo fique visível, clique com o botão
-direito, e selecione Resolver Problemas do Projeto.
-
-* Após o termino da configuração, o projeta estará pronto para rodar. Clique em cima do projeto com o botão direito, e selecione Executar. Importânte que neste momento seu NetBeans já tenha um servidor Tomcat instalado, caso não tenha, um novo servidor deve ser
-instalado para que esse passo da execução seja realizado.
-
 ## Arquitetura de negócio e funcionamento
 
 ### Camada cliente
