@@ -1,5 +1,5 @@
 # Seleção Planner Sistemas
-### Aplicação javaee com jsf, primefaces, hibernate e cdi
+### Solução para cadastro de cargos, funcionários e aplicação de promoção de salários 
 
 ## Arquitetura do projeto
 * Java Web 
