@@ -90,6 +90,46 @@ Funcionario.
 ### Funcionamento
 
 A primeira vez que a aplicação rodar, será exibido uma tela de boas vindas, no canto superior direito, existe um menu com
-nome Cadastros localizado no navbar, com links para acesso as telas de cadastro de cargos e funcionários e uma tela para promover
-aumento de salários por cargo.
+nome Cadastros localizado no navbar, com links para acesso as telas de cadastro de cargos e funcionários e uma tela para promover aumento de salários por cargo. **Todos os campos dos formulários de cadastro são obrigatórios.** 
+
+* Cadastrando, pesquisando, editando e removendo cargos
+  * A primeira vez que abrir a tela de cargos, a página vai demorar um pouco para carregar, pois o sistema nesse momento
+  estará criando o banco, as tabelas e seus relacionamentos.
+  
+  * Após o carregamento da página, um formulário com campos de código e descrição serão visíveis. Para cadastrar um novo cargo,
+  insira um valor para código e descrição, e depois clique no botão salvar. Caso queira limpar o formulário clique no botão limpar formulário.
+  
+  * Após clicar no botão salvar, uma mensagem será exibida informando detalhes da operação, caso nenhum erro tenha acontecido, o registro será salvo e será exibido na tabela abaixo. A tabela contém um campo para pesquisar resgistros, e cada registro contém
+  botões para editar ou remover o registro atual.
+  
+  * Para pesquisar um registro, basta digitar o código ou nome no imput com placehold buscar, localizado no cabeçalho a direita da tabela.  
+  
+  * Para editar um cargo, clique no botão com icone de caneta, os dados do registro serão carregados no formulário, edite
+  os dados e clique no botão salvar, caso queira cancelar a edição, clique no botão limpar formulário.
+  
+  * Para deletar um cargo, clique no botão com icone de lixeira, uma janela de diálogo será exibida com a descrição do cargo e um alerta. Clique sim para confirmar ou não para cancelar. **Importante lembrar que a exclusão de um cargo, exclui também todos os funcionários com ele relacionado**, se deseja excluir apenas o cargo, os registros dos funcionários devem ser editados para outro cargo, antes da exclusão.   
+
+* Cadastrando, pesquisando, editando e removendo funcionários
+  * Antes de cadastrar um novo funcionário, pelo menos um cargo já deve ter sido cadastrado, pois a tentativa de cadastrar um
+  funcionário sem está relacionado a um cargo exibirá um erro.
+  
+  * Após o carregamento da página, um formulário com campos de nome, matrícula, cargo e salário serão visíveis. Para cadastrar um novo funcionário, preencha todos os campos, e depois clique no botão salvar. Caso queira limpar o formulário clique no botão limpar formulário.
+  
+  * Após clicar no botão salvar, uma mensagem será exibida informando detalhes da operação, caso nenhum erro tenha acontecido, o registro será salvo e será exibido na tabela abaixo. A tabela contém um campo para pesquisar resgistros, e cada registro contém
+  botões para editar ou remover o registro atual.
+  
+  * Para pesquisar um registro, basta digitar qualquer dado de uma das colunas no imput com placehold buscar, localizado no cabeçalho a direita da tabela.  
+  
+  * Para editar um funcionário, clique no botão com icone de caneta, os dados do registro serão carregados no formulário, edite
+  os dados e clique no botão salvar, caso queira cancelar a edição, clique no botão limpar formulário.
+  
+  * Para deletar um funcionário, clique no botão com icone de lixeira, uma janela de diálogo será exibida com a descrição do cargo e um alerta. Clique sim para confirmar ou não para cancelar.
+
+* Aplicando promoção de aumento de salário por cargo
+  * No menu cadastros clique no link Aplicação de Promoção, uma nova página será carregada contendo um listbox com todos os cargos cadastrados, e uma tabela com campo para laçamento de percentual de aumento de salário.
+  
+  * Para aplicar a promoção, clique em um dos cargos exibidos no listbox, todos os funcionários do cargo selecionado serão carregados na tabela abaixo. Em seguida informe um valor referênte ao percentual de aumento que será aplicado ao salário de cada funcionário e clique em calcular.
+
+  * Após a operação será exibido uma mensagem informando que os salários foram atualizados, e a tabela exibirá os funcionários com os novos salários.
+  
   
