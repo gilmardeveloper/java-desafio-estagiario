@@ -18,14 +18,14 @@
 ## Executando o projeto com Eclipse
 
 * Faça o clone do projeto para seu workspace, após o download, vá no menu File do eclipse, clique em Import, na tela
-de dialogo, seleciona Maven, e em seguida Existing Maven Projects e clique em Next. Na próxima janela clique no botão Browse,
+de diálogo, seleciona Maven, e em seguida Existing Maven Projects e clique em Next. Na próxima janela clique no botão Browse,
 para selecionar a pasta que você clonou no seu workspace, e clique em Finish.
 
 * Aguarde o maven configurar o projeto, uma barra de progresso no canto inferior direito do Eclipse ficará visível enquanto
 o maven faz o download das dependências.
 
-* Após o termino da configuração, o projeta estará pronto para rodar. Clique em cima do projeto com o botão direito, e selecione Run As =>
-Run on Server. Importânte que neste momento seu Eclipse já tenha um servidor Tomcat configurado, caso não tenha, um novo servidor deve ser
+* Após o termino da configuração, o projeto estará pronto para rodar. Clique em cima do projeto com o botão direito, e selecione Run As =>
+Run on Server. Importante que neste momento seu Eclipse já tenha um servidor Tomcat configurado, caso não tenha, um novo servidor deve ser
 adicionado e configurado para que esse passo da execução seja realizado.
 
 ## Arquitetura de negócio e funcionamento
@@ -33,7 +33,7 @@ adicionado e configurado para que esse passo da execução seja realizado.
 ### Camada cliente
 * Views
   * Home.xhtm
-    - Tela de boas vinda da aplicação
+    - Tela de boas vindas da aplicação
     - caminho ./Home.xhtml
   * CadastroCargo.xhtm
     - Tela com ações para o processo de CRUD básico para administrar informações de cargos.
@@ -69,7 +69,7 @@ Funcionario.
  Cargo.
   * FuncionarioRepository.java
     - Implementa a interface de acesso ao banco de dados para transações de dados de objetos da classe
- Funcionario.
+ Funcionário.
 * Regras de negócios
   * Acrescimo.java
     - Interface para classes que implementam aumento de valores baseado em percentual.
@@ -87,19 +87,19 @@ nome Cadastros localizado no navbar, com links para acesso as telas de cadastro 
   * Após o carregamento da página, um formulário com campos de código e descrição serão visíveis. Para cadastrar um novo cargo,
   insira um valor para código e descrição, e depois clique no botão salvar. Caso queira limpar o formulário clique no botão limpar formulário.
   
-  * Após clicar no botão salvar, uma mensagem será exibida informando detalhes da operação, caso nenhum erro tenha acontecido, o registro será salvo e será exibido na tabela abaixo. A tabela contém um campo para pesquisar resgistros, e cada registro contém
+  * Após clicar no botão salvar, uma mensagem será exibida informando detalhes da operação, caso nenhum erro tenha acontecido, o registro será salvo e será exibido na tabela abaixo. A tabela contém um campo para pesquisar registros, e cada registro contém
   botões para editar ou remover o registro atual.
   
   * Para pesquisar um registro, basta digitar o código ou nome no imput com placehold buscar, localizado no cabeçalho a direita da tabela.  
   
-  * Para editar um cargo, clique no botão com icone de caneta, os dados do registro serão carregados no formulário, edite
+  * Para editar um cargo, clique no botão com ícone de caneta, os dados do registro serão carregados no formulário, edite
   os dados e clique no botão salvar, caso queira cancelar a edição, clique no botão limpar formulário.
   
   * Para deletar um cargo, clique no botão com icone de lixeira, uma janela de diálogo será exibida com a descrição do cargo e um alerta. Clique sim para confirmar ou não para cancelar. **Importante lembrar que a exclusão de um cargo, exclui também todos os funcionários com ele relacionado**, se deseja excluir apenas o cargo, os registros dos funcionários devem ser editados para outro cargo, antes da exclusão.   
 
 * Cadastrando, pesquisando, editando e removendo funcionários
   * Antes de cadastrar um novo funcionário, pelo menos um cargo já deve ter sido cadastrado, pois a tentativa de cadastrar um
-  funcionário sem está relacionado a um cargo exibirá um erro.
+  funcionário sem estar relacionado a um cargo exibirá um erro.
   
   * Após o carregamento da página, um formulário com campos de nome, matrícula, cargo e salário serão visíveis. Para cadastrar um novo funcionário, preencha todos os campos, e depois clique no botão salvar. Caso queira limpar o formulário clique no botão limpar formulário.
   
@@ -108,15 +108,15 @@ nome Cadastros localizado no navbar, com links para acesso as telas de cadastro 
   
   * Para pesquisar um registro, basta digitar qualquer dado de uma das colunas no imput com placehold buscar, localizado no cabeçalho a direita da tabela.  
   
-  * Para editar um funcionário, clique no botão com icone de caneta, os dados do registro serão carregados no formulário, edite
+  * Para editar um funcionário, clique no botão com ícone de caneta, os dados do registro serão carregados no formulário, edite
   os dados e clique no botão salvar, caso queira cancelar a edição, clique no botão limpar formulário.
   
   * Para deletar um funcionário, clique no botão com icone de lixeira, uma janela de diálogo será exibida com a descrição do cargo e um alerta. Clique sim para confirmar ou não para cancelar.
 
 * Aplicando promoção de aumento de salário por cargo
-  * No menu cadastros clique no link Aplicação de Promoção, uma nova página será carregada contendo um listbox com todos os cargos cadastrados, e uma tabela com campo para laçamento de percentual de aumento de salário.
+  * No menu cadastros clique no link Aplicação de Promoção, uma nova página será carregada contendo um listbox com todos os cargos cadastrados, e uma tabela com campo para lançamento de percentual de aumento de salário.
   
-  * Para aplicar a promoção, clique em um dos cargos exibidos no listbox, todos os funcionários do cargo selecionado serão carregados na tabela abaixo. Em seguida informe um valor referênte ao percentual de aumento que será aplicado ao salário de cada funcionário e clique em calcular.
+  * Para aplicar a promoção, clique em um dos cargos exibidos no listbox, todos os funcionários do cargo selecionado serão carregados na tabela abaixo. Em seguida informe um valor referente ao percentual de aumento que será aplicado ao salário de cada funcionário e clique em calcular.
 
   * Após a operação será exibido uma mensagem informando que os salários foram atualizados, e a tabela exibirá os funcionários com os novos salários.
   
