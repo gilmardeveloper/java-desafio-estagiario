@@ -111,7 +111,7 @@ nome Cadastros localizado no navbar, com links para acesso as telas de cadastro 
   * Para editar um funcionário, clique no botão com ícone de caneta, os dados do registro serão carregados no formulário, edite
   os dados e clique no botão salvar, caso queira cancelar a edição, clique no botão limpar formulário.
   
-  * Para deletar um funcionário, clique no botão com icone de lixeira, uma janela de diálogo será exibida com a descrição do cargo e um alerta. Clique sim para confirmar ou não para cancelar.
+  * Para deletar um funcionário, clique no botão com icone de lixeira, uma janela de diálogo será exibida com a descrição do funcionário e um alerta. Clique sim para confirmar ou não para cancelar.
 
 * Aplicando promoção de aumento de salário por cargo
   * No menu cadastros clique no link Aplicação de Promoção, uma nova página será carregada contendo um listbox com todos os cargos cadastrados, e uma tabela com campo para lançamento de percentual de aumento de salário.
