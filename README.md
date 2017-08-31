@@ -73,9 +73,7 @@ Funcionario.
 * Regras de negócios
   * Acrescimo.java
     - Interface para classes que implementam aumento de valores baseado em percentual.
-  * AplicarPromocao.java
-    - Responsável por promover métodos para auxiliar no cálculo de aumento de salário.
-### Funcionamento
+ ### Funcionamento
 
 A primeira vez que a aplicação rodar, será exibido uma tela de boas vindas, no canto superior direito, existe um menu com
 nome Cadastros localizado no navbar, com links para acesso as telas de cadastro de cargos e funcionários e uma tela para promover aumento de salários por cargo. **Todos os campos dos formulários de cadastro são obrigatórios.** 
