@@ -6,6 +6,6 @@
   
   <interceptors>
 		<class>com.planner.desafio.util.jpa.InterceptorTransactional</class>
-	</interceptors>
+  </interceptors>
   
 </beans>

@@ -2,7 +2,6 @@ package com.planner.desafio.util.jpa;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
@@ -16,11 +15,19 @@ import javax.persistence.Persistence;
  * @author Gilmar Carlos
  *
  */
-@ApplicationScoped
 public class EntityFactory implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	private EntityManagerFactory emf;
+	
+	/**
+	 * Construtor padrão sem argumentos
+	 * 
+	 */
+	public EntityFactory() {
+		emf = Persistence.createEntityManagerFactory("projeto");
+	}
+	
 	/**
 	 * Factory method usado pelo CDI para criar uma instância da interface (EntityManager). 
 	 *  
@@ -29,7 +36,6 @@ public class EntityFactory implements Serializable {
 	@Produces
 	@RequestScoped
 	public EntityManager createEntityManager() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("projeto");
 		return emf.createEntityManager();
 	}
 

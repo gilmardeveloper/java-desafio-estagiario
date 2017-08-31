@@ -18,6 +18,8 @@ import com.planner.desafio.util.jpa.EntityFactory;
 @FacesConverter("cargoConverter")
 public class CargoConverter implements Converter {
 
+	private EntityManager entity;	
+	
 	/**
 	 *  Retorna um objeto da classe (Cargo) relacionado a um id específico.
 	 *  
@@ -30,8 +32,8 @@ public class CargoConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String valor) {
 		Long id = Long.valueOf(valor);
-		EntityManager em = new EntityFactory().createEntityManager();
-		return em.find(Cargo.class, id);
+		entity = new EntityFactory().createEntityManager();
+		return entity.find(Cargo.class, id);
 	}
 	
 	/**

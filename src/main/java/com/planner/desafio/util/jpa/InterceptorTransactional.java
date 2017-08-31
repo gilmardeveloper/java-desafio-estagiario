@@ -7,6 +7,7 @@ import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 /**
  * Classe utilitária para a interceptação e binding de transações de persistência. O método para
@@ -34,11 +35,12 @@ public class InterceptorTransactional implements Serializable {
 	 */
 	@AroundInvoke
 	public Object contextInterceptor(InvocationContext context) throws Exception {
-
-		entity.getTransaction().begin();
+		EntityTransaction entityTransaction = entity.getTransaction();
+		
+		entityTransaction.begin();
 		Object object = context.proceed();
-		entity.getTransaction().commit();
-
+		entityTransaction.commit();
+		
 		return object;
 
 	}

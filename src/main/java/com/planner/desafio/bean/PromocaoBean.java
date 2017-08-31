@@ -10,7 +10,6 @@ import javax.inject.Named;
 
 import com.planner.desafio.model.Cargo;
 import com.planner.desafio.model.Funcionario;
-import com.planner.desafio.promocao.AplicarPromocao;
 import com.planner.desafio.repository.CargoRepository;
 import com.planner.desafio.repository.FuncionarioRepository;
 
@@ -34,15 +33,10 @@ public class PromocaoBean implements Serializable{
 	@Inject
 	private FuncionarioRepository funcionarioRepository;
 	
-	@Inject
-	private AplicarPromocao aplicarPromocao;
-		
 	private Cargo cargo;
 	
 	private BigDecimal percentualDeAumento;
 		
-	private List<Funcionario> funcionarios;
-	
 	/**
 	 *  Construtor padrão sem argumentos
 	 *   
@@ -75,25 +69,20 @@ public class PromocaoBean implements Serializable{
 	 */
 	public void aumentarSalarios(){
 		calcularSalarios();
-		atualizarSalarios();
 		atualizarCargo();
 		zerarPercentual();
 	}
 	
 	/**
 	 * Faz o cálculo de aumento do salário para cada objeto de uma lista de objetos da classe(Funcionario)
+	 * e atualiza no banco.
 	 * 
 	 */
 	private void calcularSalarios() {
-		funcionarios = aplicarPromocao.calcular(getFuncionarios(), getPercentualDeAumento());
-	}
-	
-	/**
-	 * Altera no banco cada objeto de uma lista de objetos da classe(Funcionario)
-	 * 
-	 */
-	private void atualizarSalarios(){
-	    funcionarioRepository.autualizarSalario(funcionarios);
+		for (Funcionario funcionario : getFuncionarios()) {
+			funcionario.recebeAumento(getPercentualDeAumento());
+			funcionarioRepository.salvar(funcionario);
+		}
 	}
 	
 	/**

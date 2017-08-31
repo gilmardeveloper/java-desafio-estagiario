@@ -61,28 +61,6 @@ public class FuncionarioRepository implements Serializable {
 		}
 	}
 	
-	/**
-	 * Responsável por percorrer uma lista de objetos com salários a serem atualizados no banco.
-	 *  
-	 * @param funcionarios Lista de objetos da classe (Funcionario)
-	 * 
-	 */
-	public void autualizarSalario(List<Funcionario> funcionarios) {
-		funcionarios.forEach(funcionario -> atualizar(funcionario));
-		FacesUtil.addInfoMessage("Salários foram atualizados!");
-	}
-	
-	/**
-	 * Responsável por atualizar um objeto que teve o atributo salário acrescido em seu valor.
-	 *  
-	 * @param funcionario Objeto da classe (Funcionario)
-	 * 
-	 */
-	private void atualizar(Funcionario funcionario) {
-		entity.getTransaction().begin();
-		entity.merge(funcionario);
-		entity.getTransaction().commit();
-	}
 	
 	/**
 	 * Responsável por fazer uma busca e retornar uma lista com todos os objetos.
@@ -94,5 +72,5 @@ public class FuncionarioRepository implements Serializable {
 		TypedQuery<Funcionario> query = entity.createQuery("Select f from Funcionario f order by f.nome", Funcionario.class);
 		return query.getResultList();
 	}
-
+	
 }
