@@ -2,7 +2,6 @@ com.planner.desafio.bean
 com.planner.desafio.converter
 com.planner.desafio.interfaces
 com.planner.desafio.model
-com.planner.desafio.promocao
 com.planner.desafio.repository
 com.planner.desafio.util.jpa
 com.planner.desafio.util.jsf
